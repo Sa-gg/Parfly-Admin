@@ -1,4 +1,4 @@
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 import StatCards from "../components/StatCards";
 
 const DashboardPage = () => {
@@ -6,6 +6,7 @@ const DashboardPage = () => {
     <>
       <StatCards />
       <Footer />
+  
     </>
   );
 };

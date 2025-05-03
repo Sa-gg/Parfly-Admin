@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 const DeliveriesTable = ({ handleOpen, deliveryData, setDeliveryData }) => {
   const getStatusBadgeClass = (status) => {
-    switch (status) {
+    switch (status) { 
       case "pending":
         return "bg-orange-100 text-orange-800 border border-orange-100 dark:bg-gray-700 dark:border-orange-300 dark:text-orange-300";
       case "accepted":

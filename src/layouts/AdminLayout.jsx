@@ -7,7 +7,7 @@ const AdminLayout = () => {
 
   return (
     <>
-      {/* <Sidebar />
+      <Sidebar />
       <div className="px-4 lg:ml-64">
         <Header />
 
@@ -16,10 +16,8 @@ const AdminLayout = () => {
         </div>
      
        
-      </div> */}
-      <div>
-        Admin layout
       </div>
+
     </>
   );
 };
