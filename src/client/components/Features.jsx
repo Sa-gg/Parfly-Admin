@@ -21,8 +21,8 @@ const Features = () => {
         Experience the best same-day delivery service with us. We ensure that
         your items arrive on time and in perfect condition.
       </p>
-      <div class="flex justify-center align-middle flex-wrap gap-[2.75vw] px-[5vw] py-[2rem]">
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 group transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg">
+      <div className="flex justify-center align-middle flex-wrap gap-[2.75vw] px-[5vw] py-[2rem]">
+        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 group transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg">
           <div className="relative w-auto h-autox` aspect-w-643 aspect-h-360">
             <img
               src={darkMode ? backgroundDark : background}
@@ -36,18 +36,18 @@ const Features = () => {
             />
           </div>
 
-          <div class="p-5 pb-0">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white">
+          <div className="p-5 pb-0">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white">
               Fast Delivery
             </h5>
 
-            <p class="mb-3 font-normal text-text dark:text-gray-400">
+            <p className="mb-3 font-normal text-text dark:text-gray-400">
               We prioritize speed to ensure your packages are delivered on time,
               every time.
             </p>
           </div>
         </div>
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 group transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg">
+        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 group transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg">
           <div className="relative w-auto h-autox` aspect-w-643 aspect-h-360">
             <img
               src={pin}
@@ -61,18 +61,18 @@ const Features = () => {
             />
           </div>
 
-          <div class="p-5 pb-0">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white">
+          <div className="p-5 pb-0">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white">
               Real-Time Tracking
             </h5>
 
-            <p class="mb-3 font-normal text-text dark:text-gray-400">
+            <p className="mb-3 font-normal text-text dark:text-gray-400">
               Monitor your shipments with our advanced real-time tracking
               system.
             </p>
           </div>
         </div>
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 group transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg">
+        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 group transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg">
           <div className="relative w-auto h-autox` aspect-w-643 aspect-h-360">
             <img
               src={discountBg}
@@ -86,12 +86,12 @@ const Features = () => {
             />
           </div>
 
-          <div class="p-5 pb-0">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white">
+          <div className="p-5 pb-0">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white">
               Affordable Rates
             </h5>
 
-            <p class="mb-3 font-normal text-text dark:text-gray-400">
+            <p className="mb-3 font-normal text-text dark:text-gray-400">
               Enjoy reliable courier services at competitive prices tailored to
               your needs.
             </p>

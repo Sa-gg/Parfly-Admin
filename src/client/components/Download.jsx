@@ -7,22 +7,22 @@ const Download = () => {
 
   return (
     <>
-      <section id="about" class="px-[5vw] py-[5vw]">
+      <section id="about" className="px-[5vw] py-[5vw]">
         <h2 className="text-center text-primary font-bold text-base pt-[10vh] md:pt-0 hidden">
           ABOUT US
         </h2>
-        <div class="container mx-auto py-0 md:py-[4vh] px-4 sm:px-6 lg:px-8 ">
-          <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
-            <div class="max-w-lg">
-              <h3 class="text-3xl font-bold text-primary sm:text-3xl">
+        <div className="container mx-auto py-0 md:py-[4vh] px-4 sm:px-6 lg:px-8 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
+            <div className="max-w-lg">
+              <h3 className="text-3xl font-bold text-primary sm:text-3xl">
                 Experience Parlfy On the Go!
               </h3>
-              <p class="mt-4 text-text text-lg">
+              <p className="mt-4 text-text text-lg">
                 Take your Parlfy experience to the next level with our PWA app!
                 Enjoy seamless access to all our features, stay updated, and
                 manage everything wherever you are. Download the Parlfy app now
                 and unlock convenience at your fingertips. </p>
-              <div class="mt-8">
+              <div className="mt-8">
                 <a
                   href=""
                   onClick={(event) => {
@@ -36,8 +36,8 @@ const Download = () => {
                 </a>
               </div>
             </div>
-            <div class="mt-12 md:mt-0 order-first">
-              <img src={download} alt="About Us Image" class="object-cover" />
+            <div className="mt-12 md:mt-0 order-first">
+              <img src={download} alt="About Us Image" className="object-cover" />
             </div>
           </div>
         </div>

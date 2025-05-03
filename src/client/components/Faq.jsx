@@ -3,22 +3,22 @@ import React from "react";
 const Faq = () => {
   return (
     <section id="faq">
-      <div class="py-4 bg-white dark:bg-gray-800">
-        <div class="max-w-screen-md mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between">
-          <div class="text-center">
-            <p class="mt-4 text-sm leading-7 text-gray-500 font-regular">
+      <div className="py-4 bg-white dark:bg-gray-800">
+        <div className="max-w-screen-md mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between">
+          <div className="text-center">
+            <p className="mt-4 text-sm leading-7 text-gray-500 font-regular">
               F.A.Q
             </p>
-            <h3 class="text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight text-text dark:text-white">
-              Frequently Asked <span class="text-primary">Questions</span>
+            <h3 className="text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight text-text dark:text-white">
+              Frequently Asked <span className="text-primary">Questions</span>
             </h3>
           </div>
 
-          <div class="mt-20">
-            <ul class="">
-              <li class="text-left mb-10">
-                <div class="flex flex-row items-start mb-5">
-                  <div class="hidden sm:flex items-center justify-center p-3 mr-3 rounded-full bg-primary text-white border-4 border-white text-xl font-semibold">
+          <div className="mt-20">
+            <ul className="">
+              <li className="text-left mb-10">
+                <div className="flex flex-row items-start mb-5">
+                  <div className="hidden sm:flex items-center justify-center p-3 mr-3 rounded-full bg-primary text-white border-4 border-white text-xl font-semibold">
                     <svg
                       width="30px"
                       fill="white"
@@ -40,35 +40,35 @@ const Faq = () => {
                       </g>
                     </svg>
                   </div>
-                  <div class="bg-gray-100 rounded-lg p-5 px-10 w-full flex items-center">
-                    <h4 class="text-md leading-6 font-medium text-text">
+                  <div className="bg-gray-100 rounded-lg p-5 px-10 w-full flex items-center">
+                    <h4 className="text-md leading-6 font-medium text-text">
                       How do I place a delivery request on Parfly?
                     </h4>
                   </div>
                 </div>
 
-                <div class="flex flex-row items-start">
-                  <div class="bg-primary-lighter rounded-lg p-5 px-10 w-full flex items-center ">
-                    <p class="text-gray-700 text-sm dark:text-white">
+                <div className="flex flex-row items-start">
+                  <div className="bg-primary-lighter rounded-lg p-5 px-10 w-full flex items-center ">
+                    <p className="text-gray-700 text-sm dark:text-white">
                       To place a delivery request, simply enter the pickup and
                       drop-off locations, provide package details, and confirm
                       your request. A nearby driver will be assigned to pick up
                       and deliver your package efficiently.
                     </p>
                   </div>
-                  <div class="hidden sm:flex items-center justify-center p-3 ml-3 rounded-full bg-primary text-white border-4 border-white text-xl font-semibold">
+                  <div className="hidden sm:flex items-center justify-center p-3 ml-3 rounded-full bg-primary text-white border-4 border-white text-xl font-semibold">
                     <svg
                       height="25px"
                       fill="white"
                       version="1.1"
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      xmlnsXlink="http://www.w3.org/1999/xlink"
                       x="0px"
                       y="0px"
                       viewBox="0 0 295.238 295.238"
                       style={{ enableBackground: "new 0 0 295.238 295.238" }}
-                      xml:space="preserve"
+                      xmlSpace="preserve"
                     >
                       <g>
                         <g>
@@ -104,9 +104,9 @@ const Faq = () => {
                   </div>
                 </div>
               </li>
-              <li class="text-left mb-10">
-                <div class="flex flex-row items-start mb-5">
-                  <div class="hidden sm:flex items-center justify-center p-3 mr-3 rounded-full bg-primary text-white border-4 border-white text-xl font-semibold">
+              <li className="text-left mb-10">
+                <div className="flex flex-row items-start mb-5">
+                  <div className="hidden sm:flex items-center justify-center p-3 mr-3 rounded-full bg-primary text-white border-4 border-white text-xl font-semibold">
                     <svg
                       width="30px"
                       fill="white"
@@ -128,35 +128,35 @@ const Faq = () => {
                       </g>
                     </svg>
                   </div>
-                  <div class="bg-gray-100 rounded-lg p-5 px-10 w-full flex items-center">
-                    <h4 class="text-md leading-6 font-medium text-text">
+                  <div className="bg-gray-100 rounded-lg p-5 px-10 w-full flex items-center">
+                    <h4 className="text-md leading-6 font-medium text-text">
                       Can I track my package in real time?
                     </h4>
                   </div>
                 </div>
 
-                <div class="flex flex-row items-start">
-                  <div class="bg-primary-lighter rounded-lg p-5 px-10 w-full flex items-center ">
-                    <p class="text-gray-700 text-sm dark:text-white">
+                <div className="flex flex-row items-start">
+                  <div className="bg-primary-lighter rounded-lg p-5 px-10 w-full flex items-center ">
+                    <p className="text-gray-700 text-sm dark:text-white">
                       Yes! Once your delivery is confirmed, you can track your
                       package in real time using our live tracking feature,
                       powered by TomTom. This allows you to see the driver’s
                       location and estimated arrival time.
                     </p>
                   </div>
-                  <div class="hidden sm:flex items-center justify-center p-3 ml-3 rounded-full bg-primary text-white border-4 border-white text-xl font-semibold">
+                  <div className="hidden sm:flex items-center justify-center p-3 ml-3 rounded-full bg-primary text-white border-4 border-white text-xl font-semibold">
                     <svg
                       height="25px"
                       fill="white"
                       version="1.1"
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      xmlnsXlink="http://www.w3.org/1999/xlink"
                       x="0px"
                       y="0px"
                       viewBox="0 0 295.238 295.238"
                       style={{ enableBackground: "new 0 0 295.238 295.238" }}
-                      xml:space="preserve"
+                      xmlSpace="preserve"
                     >
                       <g>
                         <g>
@@ -192,9 +192,9 @@ const Faq = () => {
                   </div>
                 </div>
               </li>
-              <li class="text-left mb-10">
-                <div class="flex flex-row items-start mb-5">
-                  <div class="hidden sm:flex items-center justify-center p-3 mr-3 rounded-full bg-primary text-white border-4 border-white text-xl font-semibold">
+              <li className="text-left mb-10">
+                <div className="flex flex-row items-start mb-5">
+                  <div className="hidden sm:flex items-center justify-center p-3 mr-3 rounded-full bg-primary text-white border-4 border-white text-xl font-semibold">
                     <svg
                       width="30px"
                       fill="white"
@@ -216,33 +216,33 @@ const Faq = () => {
                       </g>
                     </svg>
                   </div>
-                  <div class="bg-gray-100 rounded-lg p-5 px-10 w-full flex items-center">
-                    <h4 class="text-md leading-6 font-medium text-text">
+                  <div className="bg-gray-100 rounded-lg p-5 px-10 w-full flex items-center">
+                    <h4 className="text-md leading-6 font-medium text-text">
                       What payment methods does Parfly accept?
                     </h4>
                   </div>
                 </div>
 
-                <div class="flex flex-row items-start">
-                  <div class="bg-primary-lighter rounded-lg p-5 px-10 w-full flex items-center ">
-                    <p class="text-gray-700 text-sm dark:text-white">
+                <div className="flex flex-row items-start">
+                  <div className="bg-primary-lighter rounded-lg p-5 px-10 w-full flex items-center ">
+                    <p className="text-gray-700 text-sm dark:text-white">
                       Parfly currently only supports Cash on Delivery (COD). You
                       will pay the driver directly upon receiving your package.
                     </p>
                   </div>
-                  <div class="hidden sm:flex items-center justify-center p-3 ml-3 rounded-full bg-primary text-white border-4 border-white text-xl font-semibold">
+                  <div className="hidden sm:flex items-center justify-center p-3 ml-3 rounded-full bg-primary text-white border-4 border-white text-xl font-semibold">
                     <svg
                       height="25px"
                       fill="white"
                       version="1.1"
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      xmlnsXlink="http://www.w3.org/1999/xlink"
                       x="0px"
                       y="0px"
                       viewBox="0 0 295.238 295.238"
                       style={{ enableBackground: "new 0 0 295.238 295.238" }}
-                      xml:space="preserve"
+                      xmlSpace="preserve"
                     >
                       <g>
                         <g>

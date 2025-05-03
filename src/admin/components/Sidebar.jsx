@@ -9,7 +9,7 @@ const Sidebar = () => {
   }, []);
   return (
     <aside
-      className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full lg:translate-x-0 dark:bg-gray-900 dark:border-gray-700 p-2 z-[999]"
+      className="fixed top-0 left-0 w-64 h-screen transition-transform -translate-x-full lg:translate-x-0 dark:bg-gray-900 dark:border-gray-700 p-2 z-[999]"
       aria-label="Sidenav"
       id="drawer-navigation"
       
@@ -23,7 +23,7 @@ const Sidebar = () => {
         </div>
 
         <form action="#" method="GET" className="md:hidden mb-2">
-          <label for="sidebar-search" className="sr-only">
+          <label htmlFor="sidebar-search" className="sr-only">
             Search
           </label>
           <div className="relative">
@@ -35,8 +35,8 @@ const Sidebar = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                 ></path>
               </svg>
@@ -266,9 +266,9 @@ const Sidebar = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
               <span
@@ -285,9 +285,9 @@ const Sidebar = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </button>
@@ -352,9 +352,9 @@ const Sidebar = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
               <span className="ml-3 text-[.75rem] font-inter font-semibold">
@@ -392,9 +392,9 @@ const Sidebar = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
         </a>
@@ -415,14 +415,14 @@ const Sidebar = () => {
             aria-hidden="true"
             className="h-5 w-5 rounded-full mt-0.5"
             xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
             viewBox="0 0 3900 3900"
           >
             <path fill="#b22234" d="M0 0h7410v3900H0z" />
             <path
               d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
               stroke="#fff"
-              stroke-width="300"
+              strokeWidth="300"
             />
             <path fill="#3c3b6e" d="M0 0h2964v2100H0z" />
             <g fill="#fff">
@@ -470,8 +470,8 @@ const Sidebar = () => {
                     id="flag-icon-css-us"
                     viewBox="0 0 512 512"
                   >
-                    <g fill-rule="evenodd">
-                      <g stroke-width="1pt">
+                    <g fillRule="evenodd">
+                      <g strokeWidth="1pt">
                         <path
                           fill="#bd3d44"
                           d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
@@ -535,7 +535,7 @@ const Sidebar = () => {
                     id="flag-icon-css-it"
                     viewBox="0 0 512 512"
                   >
-                    <g fill-rule="evenodd" stroke-width="1pt">
+                    <g fillRule="evenodd" strokeWidth="1pt">
                       <path fill="#fff" d="M0 0h512v512H0z" />
                       <path fill="#009246" d="M0 0h170.7v512H0z" />
                       <path fill="#ce2b37" d="M341.3 0H512v512H341.3z" />
@@ -556,7 +556,7 @@ const Sidebar = () => {
                     aria-hidden="true"
                     className="h-3.5 w-3.5 rounded-full mr-2"
                     xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
                     id="flag-icon-css-cn"
                     viewBox="0 0 512 512"
                   >

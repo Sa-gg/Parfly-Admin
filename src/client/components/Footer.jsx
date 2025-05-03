@@ -25,9 +25,9 @@ const Footer = () => {
             <div className="md:w-[316px]">
               <p className="text-[18px] font-medium text-black dark:text-white flex items-center">
                 <img src={Logo} alt="" className="h-8 inline" />
-                <h1 className="text-primary font-black inline italic">
+                <span className="text-primary font-black inline italic">
                  PARFLY
-                </h1>
+                </span>
               </p>
 
               <p className="mt-[18px] text-[15px] font-normal text-black/[80%] dark:text-white/[80%]">
