@@ -2,16 +2,15 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: "/", // VERY important
+  base: "", // Fix: Use empty string for Netlify
   plugins: [react()],
   server: {
-    host: true,  // allow external access
-    port: 5173, // Use a different port from backend
+    host: true,
+    port: 5173,
     proxy: {
-      '/api': 'http://localhost:3000', // Proxy API requests to backend
+      '/api': 'http://localhost:3000',
     },
-    allowedHosts: [
-      'light-dodos-hang.loca.lt', // Add the Localtunnel domain
-    ],
+    allowedHosts: ['light-dodos-hang.loca.lt'],
   },
 });
+
