@@ -10,7 +10,7 @@ export default defineConfig({
       // '/api': 'http://localhost:3000',
       '/api': 'https://parfly-backend.onrender.com',
     },
-    // allowedHosts: ['light-dodos-hang.loca.lt'],
+    // allowedHosts: ['parfly.loca.lt'],
   },
 });
 
