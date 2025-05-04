@@ -7,9 +7,10 @@ export default defineConfig({
     host: true,
     port: 5173,
     proxy: {
-      '/api': 'http://localhost:3000',
+      // '/api': 'http://localhost:3000',
+      '/api': 'https://parfly-backend.onrender.com',
     },
-    allowedHosts: ['light-dodos-hang.loca.lt'],
+    // allowedHosts: ['light-dodos-hang.loca.lt'],
   },
 });
 
