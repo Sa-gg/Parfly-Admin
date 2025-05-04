@@ -28,6 +28,7 @@ const RecenterMap = ({ position }) => {
 };
 
 const MapView = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [position, setPosition] = useState([10.6765, 122.9509]); // Default
   const [address, setAddress] = useState('Fetching address...');
 
@@ -46,7 +47,9 @@ const MapView = () => {
 
         // Fetch address from backend
         try {
-          const res = await fetch(`/api/reverse-geocode?lat=${latitude}&lon=${longitude}`);
+          const res = await fetch(
+            `${API_URL}/api/reverse-geocode?lat=${latitude}&lon=${longitude}`
+          );
           const data = await res.json();
           if (data && data.freeformAddress) {
             setAddress(data.freeformAddress);
