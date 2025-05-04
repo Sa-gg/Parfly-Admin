@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const CustomersPage = () => {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; 
   const [isOpen, setIsOpen] = useState(false);
   const [modalMode, setModalMode] = useState("add");
   const [clientData, setClientData] = useState(null);
@@ -15,7 +16,7 @@ const CustomersPage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/clients");
+      const response = await axios.get(`${API_URL}/api/clients`);
       setTableData(response.data);
     } catch (err) {
       console.error("Error fetching data:", err);
@@ -37,7 +38,7 @@ const CustomersPage = () => {
     if (modalMode === "add") {
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/clients",
+          `${API_URL}/api/clients`,
           newClientData
         );
         console.log("client added", response.data);
@@ -67,7 +68,7 @@ const CustomersPage = () => {
   
       try {
         const response = await axios.put(
-          `http://localhost:3000/api/clients/${clientData.user_id}`,
+          `${API_URL}/api/clients/${clientData.user_id}`,
           newClientData
         );
         console.log("client updated", response.data);

@@ -7,6 +7,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const DeliveriesPage = () => {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; 
+
+
   const [senderData, setSenderData] = useState([]);
   const [driverData, setDriverData] = useState([]);
   const [deliveryData, setDeliveryData] = useState([]);
@@ -14,7 +17,7 @@ const DeliveriesPage = () => {
   // FETCH DATA
   const fetchSenderData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/clients");
+      const response = await axios.get(`${API_URL}/api/clients`);
       setSenderData(response.data);
     } catch (err) {
       console.error("Error fetching client data:", err);
@@ -28,7 +31,7 @@ const DeliveriesPage = () => {
 
   const fetchDriverData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/drivers");
+      const response = await axios.get(`${API_URL}/api/drivers`);
       setDriverData(response.data);
     } catch (err) {
       console.error("Error fetching client driver:", err);
@@ -42,7 +45,7 @@ const DeliveriesPage = () => {
 
   const fetchDeliveryData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/deliveries");
+      const response = await axios.get(`${API_URL}/api/deliveries`);
       setDeliveryData(response.data);
     } catch (err) {
       console.error("Error fetching delivery data:", err);
@@ -103,7 +106,7 @@ const DeliveriesPage = () => {
     if (modalMode === "add") {
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/deliveries",
+          `${API_URL}/api/deliveries`,
           newDeliveryData
         );
         console.log("delivery added", response.data);
@@ -120,7 +123,7 @@ const DeliveriesPage = () => {
       console.log("modal mode Edit");
       try {
         const response = await axios.put(
-          `http://localhost:3000/api/deliveries/${selectedDelivery.delivery_id}`,
+          ` ${API_URL}/api/deliveries${selectedDelivery.delivery_id}`,
           newDeliveryData
         );
         console.log("delivery updated", response.data);

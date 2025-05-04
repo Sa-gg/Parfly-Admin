@@ -3,6 +3,8 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 const DeliveriesTable = ({ handleOpen, deliveryData, setDeliveryData }) => {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; 
+
   const getStatusBadgeClass = (status) => {
     switch (status) { 
       case "pending":
@@ -56,7 +58,7 @@ const DeliveriesTable = ({ handleOpen, deliveryData, setDeliveryData }) => {
     );
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3000/api/deliveries/${id}`);
+        await axios.delete(`${API_URL}/api/deliveries/${id}`);
         setDeliveryData((prevData) =>
           prevData.filter((delivery) => delivery.delivery_id !== id)
         );

@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const CustomerTable = ({ handleOpen, tableData, setTableData }) => {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; 
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -35,7 +36,7 @@ const CustomerTable = ({ handleOpen, tableData, setTableData }) => {
     if (!result.isConfirmed) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/clients/${id}`);
+      await axios.delete(`${API_URL}/api/clients/${id}`);
       setTableData((prevData) =>
         prevData.filter((client) => client.user_id !== id)
       );

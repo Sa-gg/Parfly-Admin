@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const DriverTable = ({ handleOpen, tableData, setTableData }) => {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; 
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -35,7 +36,7 @@ const handeleDelete = async (id) => {
 
   if (result.isConfirmed) {
     try {
-      await axios.delete(`http://localhost:3000/api/drivers/${id}`);
+      await axios.delete(`${API_URL}/api/drivers/${id}`);
       setTableData((prevData) =>
         prevData.filter((driver) => driver.user_id !== id)
       );

@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const DriversPage = () => {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; 
   const [isOpen, setIsOpen] = useState(false);
   const [modalMode, setModalMode] = useState("add");
   const [driverData, setDriverData] = useState(null);
@@ -15,7 +16,7 @@ const DriversPage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/drivers");
+      const response = await axios.get(`${API_URL}/api/drivers`);
       setTableData(response.data);
     } catch (err) {
       console.error("Error fetching data:", err);
@@ -38,7 +39,7 @@ const DriversPage = () => {
     if (modalMode === "add") {
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/drivers",
+       `${API_URL}/api/drivers`,
           newDriverData
         );
         console.log("driver added", response.data);
@@ -64,7 +65,7 @@ const DriversPage = () => {
 
       try {
         const response = await axios.put(
-          `http://localhost:3000/api/drivers/${driverData.user_id}`,
+          `${API_URL}/api/drivers/${driverData.user_id}`,
           newDriverData
         );
         console.log("driver updated", response.data);
