@@ -24,7 +24,7 @@ export default function LocationSearch({ placeholder, onSelect, value }) {
     clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(async () => {
       try {
-        const { data } = await axios.get("/api/search-location", {
+        const { data } = await axios.get("https://parfly-backend.onrender.com/api/search-location", {
           params: { q: query },
         });
         setResults(data.results || []);
