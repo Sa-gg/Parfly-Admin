@@ -295,7 +295,7 @@ const Sidebar = () => {
           <ul id="dropdown-authentication" className="hidden py-2 space-y-2">
             <li>
               <NavLink
-                to="/admin/src/reportings"
+                to="/admin/deliveryReports"
                 className={({ isActive }) =>
                   `flex items-center p-2 pl-11 w-full text-sm font-medium rounded-lg transition duration-75 group ${
                     isActive
@@ -305,7 +305,7 @@ const Sidebar = () => {
                 }
               >
                 <span className="text-[.75rem] font-inter font-semibold">
-                  Financial Reports
+                  Delivery Reports
                 </span>
               </NavLink>
             </li>

@@ -67,6 +67,7 @@ const DeliveryForm = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log(pickupLocation, dropoffLocation);
     try {
       const selectedDelivery = {
         sender_id: selectedSender?.id ?? null,
@@ -85,7 +86,7 @@ const DeliveryForm = ({
         accepted_at,
         received_at,
       };
-
+      console.log("Selected Delivery Object:", selectedDelivery);
       await OnSubmit(selectedDelivery);
       resetForm();
       setIsOpen(false);

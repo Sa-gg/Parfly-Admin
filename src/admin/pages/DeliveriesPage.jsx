@@ -104,6 +104,7 @@ const DeliveriesPage = () => {
   //DELIVERY FORM SUBMIT
   const handleSubmit = async (newDeliveryData) => {
     if (modalMode === "add") {
+      console.log("add delivery data: ", newDeliveryData);
       try {
         const response = await axios.post(
           `${API_URL}/api/deliveries`,
@@ -121,9 +122,10 @@ const DeliveriesPage = () => {
       }
     } else {
       console.log("modal mode Edit");
+      console.log("update delivery data: ",newDeliveryData);
       try {
         const response = await axios.put(
-          ` ${API_URL}/api/deliveries${selectedDelivery.delivery_id}`,
+          ` ${API_URL}/api/deliveries/${selectedDelivery.delivery_id}`,
           newDeliveryData
         );
         console.log("delivery updated", response.data);

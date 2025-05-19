@@ -28,7 +28,7 @@ const RecenterMap = ({ position }) => {
 };
 
 const MapView = () => {
-  const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; // Default API URL
   const [position, setPosition] = useState([10.6765, 122.9509]); // Default
   const [address, setAddress] = useState('Fetching address...');
 

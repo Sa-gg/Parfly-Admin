@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 export default function LocationSearch({ placeholder, onSelect, value }) {
+
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; 
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [open, setOpen] = useState(false);
@@ -24,7 +26,7 @@ export default function LocationSearch({ placeholder, onSelect, value }) {
     clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(async () => {
       try {
-        const { data } = await axios.get("https://parfly-backend.onrender.com/api/search-location", {
+        const { data } = await axios.get( `${API_URL}/api/search-location`, {
           params: { q: query },
         });
         setResults(data.results || []);
@@ -87,10 +89,10 @@ export default function LocationSearch({ placeholder, onSelect, value }) {
           // Also still allow user typing a manual address
           if (
             query &&
-            (!results.length ||
-              !results.some((r) => r.address.freeformAddress === query))
+            (!results.length || !results.some((r) => r.address.freeformAddress === query))
           ) {
-            onSelect({ lat: null, lon: null, address: query });
+            // Only call onSelect if the query is valid or custom
+            onSelect({ lat: value?.lat || null, lon: value?.lon || null, address: query });
           }
         }}
       />

@@ -24,6 +24,7 @@ import ReportingsPage from "./admin/pages/ReportingsPage"
 import SettingsPage from "./admin/pages/SettingsPage"
 import ProfilePage from "./admin/pages/ProfilePage"
 import UserManagementPage from "./admin/pages/UserManagementPage"
+import DeliveryReports from "./admin/pages/DeliveryReports";
 
 import Login from "./auth/Login"
 import Register from "./auth/Register"
@@ -49,6 +50,7 @@ function App() {
         <Route path="/admin/customers" element={<CustomersPage />}/>
         <Route path="/admin/notifications" element={<NotificationsPage />}/>
         <Route path="/admin/reportings" element={<ReportingsPage />}/>
+        <Route path="/admin/deliveryReports" element={<DeliveryReports />}/>
         <Route path="/admin/settings" element={<SettingsPage />}/>
         <Route path="/admin/profile" element={<ProfilePage />}/>
         <Route path="/admin/userManagement" element={<UserManagementPage />}/>
