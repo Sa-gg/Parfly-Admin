@@ -129,7 +129,7 @@ const TransactionTable = ({
 
   const downloadCSV = () => {
     if (!filteredData || filteredData.length === 0) return;
-  
+
     const headers = Object.keys(filteredData[0]);
     const csvRows = [
       headers.join(","), // Header row
@@ -137,19 +137,19 @@ const TransactionTable = ({
         headers.map((field) => `"${row[field] ?? ""}"`).join(",")
       ),
     ];
-  
+
     const csvString = csvRows.join("\n");
     const blob = new Blob([csvString], { type: "text/csv" });
     const url = window.URL.createObjectURL(blob);
-  
+
     const link = document.createElement("a");
     link.href = url;
     link.download = "delivery_report.csv";
     link.click();
-  
+
     window.URL.revokeObjectURL(url);
   };
-  
+
 
   return (
     <>
@@ -248,7 +248,7 @@ const TransactionTable = ({
                   name="start"
                   type="date"
                   value={fromDate}
-            onChange={handleFromDateChange}
+                  onChange={handleFromDateChange}
                   className="pl-24 pr-2 py-2 w-full rounded-lg border text-sm text-gray-900 bg-gray-50 border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 />
               </div>
@@ -275,7 +275,7 @@ const TransactionTable = ({
                   name="finish"
                   type="date"
                   value={toDate}
-                  onChange={handleToDateChange} 
+                  onChange={handleToDateChange}
                   className="pl-24 pr-2 py-2 w-full rounded-lg border text-sm text-gray-900 bg-gray-50 border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 />
               </div>
@@ -317,97 +317,118 @@ const TransactionTable = ({
                     </tr>
                   </thead>
                   <tbody className="bg-white dark:bg-gray-800">
-                    {filteredData.length > 0 ? (
-                      filteredData.map((transaction, index) => {
-                        const std = transaction.std_deliveries_per_driver;
-                        let label = "N/A";
-                        let colorClass =
-                          "bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-white";
+                    {(() => {
+                      // declare lastDate and colorFlag outside map so they persist
+                      let lastDate = null;
+                      let colorFlag = false;
 
-                        if (std == 0) {
-                          label = "✅ Balanced";
-                          colorClass =
-                            "text-green-800 dark:bg-green-700 dark:text-white";
-                        } else if (std < 1.5) {
-                          label = "⚠️ Slightly Uneven";
-                          colorClass =
-                            "text-yellow-800 dark:bg-yellow-700 dark:text-white";
-                        } else if (std >= 1.5) {
-                          label = "❗ Unbalanced";
-                          colorClass =
-                            "text-red-800 dark:bg-red-700 dark:text-white";
-                        }
+                      if (filteredData.length > 0) {
+                        return filteredData.map((transaction, index) => {
+                          const std = transaction.std_deliveries_per_driver;
+                          let label = "N/A";
+                          let colorClass =
+                            "bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-white";
 
+                          if (std  <= 1) {
+                            label = "✅ Perfectly Balanced";
+                            colorClass =
+                              "text-green-800 dark:bg-green-700 dark:text-white";
+                          } else if (std <= 3) {
+                            label = "⚠️ Slightly Imbalanced";
+                            colorClass =
+                              "text-yellow-800 dark:bg-yellow-700 dark:text-white";
+                          } else  {
+                            label = "❗ Significantly Uneven";
+                            colorClass =
+                              "text-red-800 dark:bg-red-700 dark:text-white";
+                          }
+
+                          // Use delivery_date or date consistently here
+                          const currentDate = transaction.delivery_date;
+
+                          if (currentDate !== lastDate) {
+                            colorFlag = !colorFlag;
+                            lastDate = currentDate;
+                          }
+
+                          const bgColor = colorFlag ? "bg-gray-200 dark:bg-gray-700" : "bg-gray-50 dark:bg-gray-800";
+
+                          return (
+                            <tr
+                              key={index}
+                              className={`${bgColor} hover:bg-gray-200`}>
+                              <td className="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                {transaction.delivery_date
+                                  ? new Date(
+                                      transaction.delivery_date
+                                    ).toLocaleDateString("en-US", {
+                                      month: "short",
+                                      day: "numeric",
+                                      year: "numeric",
+                                    })
+                                  : "N/A"}
+                              </td>
+                              <td className="p-4 whitespace-nowrap">
+                                {(() => {
+                                  const statusColors = {
+                                    completed:
+                                      "bg-green-100 text-green-800 border-green-100 dark:bg-gray-700 dark:text-green-400 dark:border-green-500",
+                                    pending:
+                                      "bg-yellow-100 text-yellow-800 border-yellow-100 dark:bg-gray-700 dark:text-yellow-400 dark:border-yellow-500",
+                                    cancelled:
+                                      "bg-red-100 text-red-800 border-red-100 dark:bg-gray-700 dark:text-red-400 dark:border-red-500",
+                                    intransit:
+                                      "bg-blue-100 text-blue-800 border-blue-100 dark:bg-gray-700 dark:text-blue-400 dark:border-blue-500",
+                                  };
+
+                                  const status =
+                                    transaction.status?.toLowerCase();
+                                  const statusStyle =
+                                    statusColors[status] ||
+                                    "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500";
+
+                                  return (
+                                    <span
+                                      className={`text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md ${statusStyle}`}>
+                                      {transaction.status || "N/A"}
+                                    </span>
+                                  );
+                                })()}
+                              </td>
+                              <td className="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
+                                {transaction.total_deliveries || "N/A"}
+                              </td>
+                              <td className="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                {transaction.unique_drivers || "N/A"}
+                              </td>
+                              <td className="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                {std !== null ? std : "N/A"}
+                              </td>
+                              <td
+                                className={`p-4 text-xs font-medium whitespace-nowrap ${colorClass}`}>
+                                {std !== null ? label : "N/A"}
+                              </td>
+                              <td className="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                {transaction.unique_senders || "N/A"}
+                              </td>
+                              <td className="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                {transaction.unique_receivers || "N/A"}
+                              </td>
+                            </tr>
+                          );
+                        });
+                      } else {
                         return (
-                          <tr key={index}>
-                            <td className="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                              {transaction.delivery_date
-                                ? new Date(
-                                    transaction.delivery_date
-                                  ).toLocaleDateString("en-US", {
-                                    month: "short",
-                                    day: "numeric",
-                                    year: "numeric",
-                                  })
-                                : "N/A"}
-                            </td>
-                            <td className="p-4 whitespace-nowrap">
-                              {(() => {
-                                const statusColors = {
-                                  completed:
-                                    "bg-green-100 text-green-800 border-green-100 dark:bg-gray-700 dark:text-green-400 dark:border-green-500",
-                                  pending:
-                                    "bg-yellow-100 text-yellow-800 border-yellow-100 dark:bg-gray-700 dark:text-yellow-400 dark:border-yellow-500",
-                                  cancelled:
-                                    "bg-red-100 text-red-800 border-red-100 dark:bg-gray-700 dark:text-red-400 dark:border-red-500",
-                                  intransit:
-                                    "bg-blue-100 text-blue-800 border-blue-100 dark:bg-gray-700 dark:text-blue-400 dark:border-blue-500",
-                                };
-
-                                const status =
-                                  transaction.status?.toLowerCase();
-                                const statusStyle =
-                                  statusColors[status] ||
-                                  "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500";
-
-                                return (
-                                  <span
-                                    className={`text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md ${statusStyle}`}>
-                                    {transaction.status || "N/A"}
-                                  </span>
-                                );
-                              })()}
-                            </td>
-
-                            <td className="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                              {transaction.total_deliveries || "N/A"}
-                            </td>
-                            <td className="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                              {transaction.unique_drivers || "N/A"}
-                            </td>
-                            <td className="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                              {std !== null ? std : "N/A"}
-                            </td>
+                          <tr>
                             <td
-                              className={`p-4 text-xs font-medium rounded-md whitespace-nowrap ${colorClass}`}>
-                              {std !== null ? label : "N/A"}
-                            </td>
-                            <td className="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                              {transaction.unique_senders || "N/A"}
-                            </td>
-                            <td className="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                              {transaction.unique_receivers || "N/A"}
+                              colSpan="8"
+                              className="text-center py-4 text-black">
+                              No matches found
                             </td>
                           </tr>
                         );
-                      })
-                    ) : (
-                      <tr>
-                        <td colSpan="8" className="text-center py-4 text-black">
-                          No matches found
-                        </td>
-                      </tr>
-                    )}
+                      }
+                    })()}
                   </tbody>
                 </table>
               </div>
@@ -459,7 +480,7 @@ const TransactionTable = ({
           </div>
           <div className="flex-shrink-0 sticky">
             <button
-                onClick={downloadCSV}
+              onClick={downloadCSV}
               className="inline-flex items-center p-2 text-xs font-medium uppercase rounded-lg text-primary-700 sm:text-sm hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700">
               Download Report
               <svg
