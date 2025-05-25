@@ -10,10 +10,10 @@ import ObserverProvider from './assets/img/ObserverProvider.jsx';
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <ObserverProvider> 
       <App />
     </ObserverProvider> 
-  </StrictMode>
+  // </StrictMode>
 )
 
