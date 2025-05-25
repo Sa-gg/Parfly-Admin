@@ -76,7 +76,7 @@ const MapView = () => {
         const coords = [latitude, longitude];
         setPosition(coords);
 
-        console.log("current position: ",coords)
+       
 
         try {
           const res = await fetch(`${API_URL}/api/reverse-geocode?lat=${latitude}&lon=${longitude}`);
@@ -126,6 +126,8 @@ const MapView = () => {
           <Popup>
             <strong>Your Location:</strong><br />
             {address}
+            lat: {position[0]}
+            long: {position[1]}
           </Popup>
         </Marker>
 
