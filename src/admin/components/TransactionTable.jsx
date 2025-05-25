@@ -8,6 +8,8 @@ const TransactionTable = ({
 }) => {
   const filteredData = tableData;
 
+
+
   const [isOpen, setIsOpen] = useState(false);
   const [selectedRange, setSelectedRange] = useState("Last 7 days");
 
@@ -59,7 +61,7 @@ const TransactionTable = ({
         endDate = null;
     }
 
-    const format = (d) => d.toISOString().split("T")[0];
+    const format = (d) => d.toLocaleDateString("en-CA"); // YYYY-MM-DD
     return {
       startDate: startDate ? format(startDate) : null,
       endDate: endDate ? format(endDate) : null,

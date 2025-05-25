@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvents,
+  useMap,
+} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
@@ -27,12 +34,24 @@ const RecenterMap = ({ position }) => {
   return null;
 };
 
-const MapView = () => {
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; // Default API URL
-  const [position, setPosition] = useState([10.6765, 122.9509]); // Default
-  const [address, setAddress] = useState('Fetching address...');
+// Component to listen to map clicks
+const ClickToPin = ({ onClick }) => {
+  useMapEvents({
+    click: (e) => {
+      const { lat, lng } = e.latlng;
+      onClick([lat, lng]);
+    },
+  });
+  return null;
+};
 
-  // Get user's location once
+const MapView = () => {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+  const [position, setPosition] = useState([10.6765, 122.9509]);
+  const [address, setAddress] = useState('Fetching address...');
+  const [pins, setPins] = useState([]);
+
+  // Get user's current location on mount
   useEffect(() => {
     if (!navigator.geolocation) {
       alert('Geolocation is not supported by your browser');
@@ -45,7 +64,6 @@ const MapView = () => {
         const coords = [latitude, longitude];
         setPosition(coords);
 
-        // Fetch address from backend
         try {
           const res = await fetch(
             `${API_URL}/api/reverse-geocode?lat=${latitude}&lon=${longitude}`
@@ -73,6 +91,24 @@ const MapView = () => {
     );
   }, []);
 
+  // Function to add a pin
+  const handleMapClick = async (coords) => {
+    const [lat, lon] = coords;
+    let label = "Pinned location";
+
+    try {
+      const res = await fetch(`${API_URL}/api/reverse-geocode?lat=${lat}&lon=${lon}`);
+      const data = await res.json();
+      if (data && data.freeformAddress) {
+        label = data.freeformAddress;
+      }
+    } catch {
+      label = "Pinned location (address unavailable)";
+    }
+
+    setPins((prevPins) => [...prevPins, { coords, label }]);
+  };
+
   return (
     <div className="w-full h-screen">
       <MapContainer
@@ -86,6 +122,9 @@ const MapView = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         />
         <RecenterMap position={position} />
+        <ClickToPin onClick={handleMapClick} />
+
+        {/* Marker for user's location */}
         <Marker position={position} icon={customIcon}>
           <Popup>
             <strong>Your Location:</strong>
@@ -93,6 +132,13 @@ const MapView = () => {
             {address}
           </Popup>
         </Marker>
+
+        {/* Render pinned markers */}
+        {pins.map((pin, idx) => (
+          <Marker key={idx} position={pin.coords} icon={customIcon}>
+            <Popup>{pin.label}</Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </div>
   );

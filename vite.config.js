@@ -10,7 +10,7 @@ export default defineConfig({
         // '/api': 'http://localhost:3000',
       '/api': 'https://parfly-backend.onrender.com',
     },
-    // allowedHosts: ['tired-news-cry.loca.lt'],
+    // allowedHosts: ['large-memes-press.loca.lt'],
   },
 });
 

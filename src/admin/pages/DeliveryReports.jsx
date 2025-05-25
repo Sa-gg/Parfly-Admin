@@ -19,7 +19,7 @@ const DeliveryReports = () => {
   const sevenDaysAgo = new Date();
   sevenDaysAgo.setDate(today.getDate() - 6);
   
-  const formatDate = (date) => date.toISOString().split("T")[0];
+    const formatDate= (date) => date.toLocaleDateString("en-CA"); // YYYY-MM-DD
   
   const [dateRange, setDateRange] = useState({
     startDate: formatDate(sevenDaysAgo),
@@ -49,6 +49,9 @@ const DeliveryReports = () => {
   useEffect(() => {
     fetchData();
   }, [dateRange, selectedStatuses]);
+
+
+  console.log("transactions data", tableData);
 
   return (
     <>

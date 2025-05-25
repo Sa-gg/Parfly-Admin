@@ -1,6 +1,12 @@
 const DeliveryStatusCards = ({ tableData }) => {
-  const getStatusCount = (status) =>
-    tableData.filter((item) => item.status === status).length;
+
+
+   const getStatusCount = (status) =>
+    tableData
+      .filter((item) => item.status === status)
+      .reduce((sum, item) => sum + Number(item.total_deliveries), 0);
+
+ 
 
   const completedCount = getStatusCount("completed");
   const inTransitCount = getStatusCount("in_transit");

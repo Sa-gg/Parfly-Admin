@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const DeliveriesTable = ({ handleOpen, deliveryData, setDeliveryData }) => {
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; 
@@ -52,11 +54,18 @@ const DeliveriesTable = ({ handleOpen, deliveryData, setDeliveryData }) => {
       (delivery.status?.toLowerCase() || "").includes(searchTerm.toLowerCase())
   );
 
+   const MySwal = withReactContent(Swal);
+  
   const handeleDelete = async (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this delivery?"
-    );
-    if (confirmDelete) {
+    const result = await MySwal.fire({
+      title: "Delete driver?",
+      text: "This action cannot be undone.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+    });
+  
+    if (result.isConfirmed) {
       try {
         await axios.delete(`${API_URL}/api/deliveries/${id}`);
         setDeliveryData((prevData) =>
@@ -69,7 +78,8 @@ const DeliveriesTable = ({ handleOpen, deliveryData, setDeliveryData }) => {
         toast.error("Error Deleting Delivery");
       }
     }
-  };
+  }
+  
 
   return (
     <>

@@ -1,10 +1,12 @@
 import DeliveriesTable from "../components/DeliveriesTable";
 import DeliveryForm from "../components/Modal/DeliveryForm.jsx";
 import SenderModal from "../components/Modal/SenderModal.jsx";
-import DeliveryDriverModal from "../components/Modal/DeliveryDriverModal.jsx";
+import DeliveryDriverModal from "../components/modal/DeliveryDriverModal.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const DeliveriesPage = () => {
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; 
@@ -102,6 +104,7 @@ const DeliveriesPage = () => {
  
 
   //DELIVERY FORM SUBMIT
+const MySwal = withReactContent(Swal);
   const handleSubmit = async (newDeliveryData) => {
     if (modalMode === "add") {
       console.log("add delivery data: ", newDeliveryData);
@@ -121,8 +124,16 @@ const DeliveriesPage = () => {
           toast.error("Error Adding Delivery");
       }
     } else {
-      console.log("modal mode Edit");
-      console.log("update delivery data: ",newDeliveryData);
+    const result = await MySwal.fire({
+        title: "Update Driver?",
+        text: "Do you want to proceed with updating this driver's information?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, update",
+        cancelButtonText: "Cancel",
+      });
+
+      if (!result.isConfirmed) return;
       try {
         const response = await axios.put(
           ` ${API_URL}/api/deliveries/${selectedDelivery.delivery_id}`,

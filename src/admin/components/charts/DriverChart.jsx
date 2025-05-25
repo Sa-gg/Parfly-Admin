@@ -24,25 +24,42 @@ ChartJS.register(
 );
 
 const DriverChart = ({ driverDeliverySpreadData, onDateRangeChange }) => {
-  console.log(driverDeliverySpreadData);
+  const avgStdPerDay = driverDeliverySpreadData.reduce((acc, entry) => {
+    const date = entry.delivery_date;
+    const std = parseFloat(entry.std_deliveries_per_driver) || 0;
 
-  const chartLabels = driverDeliverySpreadData.map((entry) =>
-    new Date(entry.delivery_date).toLocaleDateString("en-US", {
+    if (!acc[date]) {
+      acc[date] = { totalStd: 0, count: 0 };
+    }
+
+    acc[date].totalStd += std;
+    acc[date].count += 1;
+
+    return acc;
+  }, {});
+
+  const avgStdArray = Object.entries(avgStdPerDay).map(
+    ([date, { totalStd, count }]) => ({
+      date,
+      avgStd: +(totalStd / count).toFixed(2),
+    })
+  );
+
+  const chartLabels = avgStdArray.map(({ date }) =>
+    new Date(date).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
     })
   );
 
-  const stdData = driverDeliverySpreadData.map((entry) =>
-    parseFloat(entry.std_deliveries_per_driver)
-  );
+  const stdPerDay = avgStdArray.map(({ avgStd }) => avgStd);
 
   const data = {
     labels: chartLabels,
     datasets: [
       {
         label: "STD of Deliveries per Driver",
-        data: stdData,
+        data: stdPerDay,
         fill: false,
         borderColor: "#FC8002",
         tension: 0.4,
@@ -63,21 +80,21 @@ const DriverChart = ({ driverDeliverySpreadData, onDateRangeChange }) => {
       },
     },
     scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: (val) => `${val}%`,
-          },
-          grid: {
-            display: true, // Hide horizontal lines
-          },
+      y: {
+        beginAtZero: true,
+        ticks: {
+          callback: (val) => `${val}%`,
         },
-        x: {
-          grid: {
-            display: false, // Optional: also hide vertical lines
-          },
+        grid: {
+          display: true, // Hide horizontal lines
         },
       },
+      x: {
+        grid: {
+          display: false, // Optional: also hide vertical lines
+        },
+      },
+    },
   };
 
   const ranges = [
@@ -126,7 +143,7 @@ const DriverChart = ({ driverDeliverySpreadData, onDateRangeChange }) => {
         endDate = null;
     }
 
-    const format = (d) => d.toISOString().split("T")[0];
+    const format = (d) => d.toLocaleDateString("en-CA");
     return {
       startDate: startDate ? format(startDate) : null,
       endDate: endDate ? format(endDate) : null,
@@ -140,22 +157,36 @@ const DriverChart = ({ driverDeliverySpreadData, onDateRangeChange }) => {
     onDateRangeChange({ startDate, endDate });
   };
 
-  const latestStd = stdData[stdData.length - 1] ?? 0;
+
+let overallStd = 0;
+
+if (driverDeliverySpreadData.length > 0) {
+  overallStd = +(
+    driverDeliverySpreadData.reduce((sum, entry) => {
+      const std = parseFloat(entry.std_deliveries_per_driver);
+      return sum + (isNaN(std) ? 0 : std);
+    }, 0) / driverDeliverySpreadData.length
+  ).toFixed(2);
+}
+
+
+
 
   // Determine label and color class based on value
-  let label = "";
-  let colorClass = "";
+let label = "";
+let colorClass = "";
 
-  if (latestStd <= 1) {
-    label = "Perfectly Balanced";
-    colorClass = "text-green-500 bg-green-100 dark:bg-green-900";
-  } else if (latestStd <= 3) {
-    label = "Slightly Imbalanced";
-    colorClass = "text-yellow-600 bg-yellow-100 dark:bg-yellow-900";
-  } else {
-    label = "Significantly Uneven";
-    colorClass = "text-red-600 bg-red-100 dark:bg-red-900";
-  }
+if (overallStd <= 1)  {
+  label = "Perfectly Balanced";
+  colorClass = "text-green-500 bg-green-100 dark:bg-green-900";
+} else if (overallStd <= 3) {
+  label = "Slightly Imbalanced";
+  colorClass = "text-yellow-600 bg-yellow-100 dark:bg-yellow-900";
+} else {
+  label = "Significantly Uneven";
+  colorClass = "text-red-600 bg-red-100 dark:bg-red-900";
+}
+
 
   return (
     <>
@@ -166,7 +197,7 @@ const DriverChart = ({ driverDeliverySpreadData, onDateRangeChange }) => {
               Driver Load Distribution (Std. Dev)
             </h5>
             <p className="text-base font-normal text-gray-900 dark:text-gray-400">
-              Current Spread:
+              Ave Std: <b>{overallStd}</b> 
             </p>
           </div>
           <div className="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center relative">
@@ -230,7 +261,7 @@ const DriverChart = ({ driverDeliverySpreadData, onDateRangeChange }) => {
             </div>
 
             <NavLink
-                  to="/admin/deliveryReports"
+              to="/admin/deliveryReports"
               className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-[#FC8002] dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
               Report
               <svg

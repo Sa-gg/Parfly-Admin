@@ -22,7 +22,7 @@ const SenderModal = ({ isOpen, setIsOpen, setDriverData, driverData, onSelectDri
   return (
     <>
       <dialog id="my_modal_4" class="modal z-[1001]" open={isOpen}>
-        <div class="modal-box w-11/12 max-w-5xl bg-white">
+        <div class="modal-box w-11/12 max-w-5xl bg-white pb-0">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button
@@ -36,7 +36,7 @@ const SenderModal = ({ isOpen, setIsOpen, setDriverData, driverData, onSelectDri
             <div className="w-full mb-1">
               <div className="mb-4">
                 <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                  All customers
+                  All drivers
                 </h1>
               </div>
               <div className="sm:flex flex">
@@ -51,7 +51,7 @@ const SenderModal = ({ isOpen, setIsOpen, setDriverData, driverData, onSelectDri
                         name="email"
                         id="users-search"
                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FC8002] focus:border-[#FC8002]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search for customers"
+                        placeholder="Search for drivers"
                         onChange={handleSearchChange}
                       />
                     </div>
@@ -102,6 +102,9 @@ const SenderModal = ({ isOpen, setIsOpen, setDriverData, driverData, onSelectDri
                           className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"></th>
                       </tr>
                     </thead>
+
+                    
+       
                     <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                       {filteredData.length > 0 ? (
                         filteredData.map((driver) => (
@@ -175,6 +178,9 @@ const SenderModal = ({ isOpen, setIsOpen, setDriverData, driverData, onSelectDri
                         </tr>
                       )}
                     </tbody>
+            
+
+
                   </table>
                 </div>
               </div>

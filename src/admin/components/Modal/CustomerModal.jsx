@@ -51,8 +51,11 @@ const CustomerModal = ({ isOpen, setIsOpen, mode, OnSubmit, clientData }) => {
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       setIsOpen(false);
+     
     }
   };
+
+  
 
   if (!isOpen) return null; // Only render when open
 

@@ -8,8 +8,10 @@ import { NavLink } from "react-router";
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 const StatusChart = ({ statusData, onDateRangeChange }) => {
-  const getStatusCount = (status) =>
-    statusData.filter((item) => item.status === status).length;
+ const getStatusCount = (status) =>
+    statusData
+      .filter((item) => item.status === status)
+      .reduce((sum, item) => sum + Number(item.total_deliveries), 0);
 
   const completedCount = getStatusCount("completed");
   const inTransitCount = getStatusCount("in_transit");
@@ -17,7 +19,6 @@ const StatusChart = ({ statusData, onDateRangeChange }) => {
   const cancelledCount = getStatusCount("cancelled");
   const acceptedCount = getStatusCount("accepted");
 
-  // Chart.js configuration
   const data = {
     labels: ["Completed", "Cancelled", "Pending", "Accepted", "In Transit"],
     datasets: [
@@ -127,7 +128,7 @@ const StatusChart = ({ statusData, onDateRangeChange }) => {
         endDate = null;
     }
 
-    const format = (d) => d.toISOString().split("T")[0];
+    const format = (d) => d.toLocaleDateString("en-CA");
     return {
       startDate: startDate ? format(startDate) : null,
       endDate: endDate ? format(endDate) : null,

@@ -73,6 +73,7 @@ const DriverModal = ({ isOpen, setIsOpen, mode, OnSubmit, driverData }) => {
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       setIsOpen(false);
+       console.log("Backdrop clicked, closing modal ",isOpen);
     }
   };
 
@@ -84,9 +85,10 @@ const DriverModal = ({ isOpen, setIsOpen, mode, OnSubmit, driverData }) => {
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center  z-[999]"
       onClick={handleBackdropClick}
     >
-      {/* You can open the modal using document.getElementById('ID').showModal() method */}
-      <dialog id="my-4_modal_3" className="modal" open={isOpen}>
-        <div className="modal-box bg-white">
+
+      
+      <dialog open  className="modal-box bg-white relative rounded-lg shadow-lg w-11/12 max-w-md">
+       
           <h3 className="font-bold text-lg py-4">
             {mode === "edit" ? "Edit Driver" : "Driver Details"}
           </h3>
@@ -96,7 +98,7 @@ const DriverModal = ({ isOpen, setIsOpen, mode, OnSubmit, driverData }) => {
             ✕
           </button>
           <form method="dialog" onSubmit={handleSubmit}>
-            {/* if there is a button in form, it will close the modal */}
+           
             <label className="input input-bordered flex items-center gap-2 my-4">
               Name:
               <input
@@ -193,8 +195,9 @@ const DriverModal = ({ isOpen, setIsOpen, mode, OnSubmit, driverData }) => {
               {mode === "edit" ? "Save Changes" : "Add Driver"}
             </button>
           </form>
-        </div>
+      
       </dialog>
+    
       </div>
     </>
   );
