@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import DriverTable from "../components/DriverTable";
-import DriverModal from "../components/modal/DriverModal";
+import DriverModal from "../components/Modal/DriverModal";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";

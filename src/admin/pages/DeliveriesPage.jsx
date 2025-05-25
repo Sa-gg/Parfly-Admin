@@ -1,7 +1,7 @@
 import DeliveriesTable from "../components/DeliveriesTable";
 import DeliveryForm from "../components/Modal/DeliveryForm.jsx";
 import SenderModal from "../components/Modal/SenderModal.jsx";
-import DeliveryDriverModal from "../components/modal/DeliveryDriverModal.jsx";
+import DeliveryDriverModal from "../components/Modal/DeliveryDriverModal.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";

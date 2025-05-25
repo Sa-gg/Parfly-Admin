@@ -1,7 +1,7 @@
 import CustomerTable from "../components/CustomerTable";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import CustomerModal from "../components/modal/CustomerModal";
+import CustomerModal from "../components/Modal/CustomerModal";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
