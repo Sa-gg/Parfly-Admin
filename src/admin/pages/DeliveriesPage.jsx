@@ -125,8 +125,8 @@ const MySwal = withReactContent(Swal);
       }
     } else {
     const result = await MySwal.fire({
-        title: "Update Driver?",
-        text: "Do you want to proceed with updating this driver's information?",
+        title: "Update Delivery?",
+        text: "Do you want to proceed with updating this delivery's information?",
         icon: "question",
         showCancelButton: true,
         confirmButtonText: "Yes, update",

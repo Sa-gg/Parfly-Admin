@@ -57,7 +57,7 @@ const ClickToPin = ({ onPin }) => {
   return null;
 };
 
-const MapView = () => {
+const MapView = () => { 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
   const [position, setPosition] = useState([10.6765, 122.9509]);
   const [address, setAddress] = useState('Fetching address...');

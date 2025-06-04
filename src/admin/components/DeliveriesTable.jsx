@@ -58,7 +58,7 @@ const DeliveriesTable = ({ handleOpen, deliveryData, setDeliveryData }) => {
   
   const handeleDelete = async (id) => {
     const result = await MySwal.fire({
-      title: "Delete driver?",
+      title: "Delete Delivery?",
       text: "This action cannot be undone.",
       icon: "warning",
       showCancelButton: true,
